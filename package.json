@@ -1,0 +1,26 @@
+{
+  "name": "insuranceapp",
+  "version": "1.0.0",
+  "description": "Blue 2.0 Sales Demo Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/strawberryGorilla/insurance-demo-polymer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/strawberryGorilla/insurance-demo-polymer/issues"
+  },
+  "homepage": "https://github.com/strawberryGorilla/insurance-demo-polymer#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cfenv": "^1.0.3",
+    "express": "^4.14.0",
+    "form-data": "^2.1.1",
+    "multer": "^1.2.0"
+  }
+}

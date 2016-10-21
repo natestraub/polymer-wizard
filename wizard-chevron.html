@@ -1,0 +1,308 @@
+<link rel="import" href="../polymer/polymer.html">
+<link href="progress-wizard.min.css" rel="stylesheet">
+
+<dom-module id="wizard-chevron">
+
+
+  <template>
+
+<style>
+    body {
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+        padding: 20px;
+    }
+    .container {
+        width: 70%;
+        margin: 3em auto;
+    }
+    a {
+        color: #406753;
+        text-decoration: none;
+        border-bottom: 1px dotted #999;
+    }
+    a:hover {
+        color: black;
+        border-color: black;
+    }
+    hr {
+        opacity: 0.3;
+    }
+    h1 {
+        font-size: 50px;
+    }
+    h3 {
+        border-left: 12px solid #f1f1f1;
+        text-indent: 1em;
+        color: #999;
+        margin-top: 2em;
+        font-weight: 100;
+    }
+    ul {
+        margin: 0;
+        padding: 0.4em;
+        list-style-type: square;
+    }
+    li {
+        padding-left: 0.5em;
+        line-height: 2.4em;
+    }
+    .subdued {
+        font-size: 80%;
+        opacity: 0.6;
+    }
+    /* A totally custom override */
+    .progress-indicator.custom-complex {
+        background-color: #f1f1f1;
+        padding: 10px 5px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+    .progress-indicator.custom-complex > li .bubble {
+        height: 12px;
+        width: 99%;
+        border-radius: 2px;
+        box-shadow: inset -5px 0 12px rgba(0, 0, 0, 0.2);
+    }
+    .progress-indicator.custom-complex > li .bubble:before,
+    .progress-indicator.custom-complex > li .bubble:after {
+        display: none;
+    }
+    /* Demo for vertical bars */
+    .progress-indicator.stepped.stacked {
+        width: 48%;
+        display: inline-block;
+    }
+    .progress-indicator.stepped.stacked > li {
+        height: 150px;
+    }
+    .progress-indicator.stepped.stacked > li .bubble {
+        padding: 0.1em;
+    }
+    .progress-indicator.stepped.stacked > li:first-of-type .bubble {
+        padding: 0.5em;
+    }
+    .progress-indicator.stepped.stacked > li:last-of-type .bubble {
+        padding: 0em;
+    }
+    /* Nocenter */
+    .progress-indicator.nocenter.stacked > li {
+        min-height: 100px;
+    }
+    .progress-indicator.nocenter.stacked > li span {
+        display: block;
+    }
+    /* Demo for Timeline vertical bars */
+    #timeline-speaker-example {
+        background-color: white;
+        color: white;
+        padding: 1em 2em 1em 0em;
+        text-align: center;
+        border-radius: 10px;
+        width:30%;
+    }
+    #timeline-speaker-example .progress-indicator {
+        width: 100%;
+    }
+    #timeline-speaker-example .bubble {
+        padding: 0;
+    }
+    #timeline-speaker-example .progress-indicator > li {
+        color: white;
+    }
+    #timeline-speaker-example .time {
+        position: relative;
+        left: -80px;
+        top: 30px;
+        font-size: 130%;
+        text-align: right;
+        opacity: 0.6;
+        font-weight: 100;
+        color: #3367d6;
+    }
+    #timeline-speaker-example .current-time .time {
+        font-size: 170%;
+        opacity: 1;
+    }
+    #timeline-speaker-example .stacked-text {
+        top: -25px;
+        color: #3367d6;
+    }
+    #timeline-speaker-example .subdued {
+        font-size: 10px;
+        display: block;
+    }
+    #timeline-speaker-example > li:hover {
+        color: #ff3d54;
+    }
+    #timeline-speaker-example > li:hover .bubble,
+    #timeline-speaker-example > li:hover .bubble:before,
+    #timeline-speaker-example > li:hover .bubble:after {
+        background-color: #ff3d54;
+    }
+    #timeline-speaker-example .current-time .sub-info {
+        font-size: 60%;
+        line-height: 0.2em;
+        text-transform: capitalize;
+        color: #6988be;
+    }
+    @media handheld, screen and (max-width: 400px) {
+        .container {
+            margin: 0;
+            width: 100%;
+        }
+        .progress-indicator.stacked {
+            display: block;
+            width: 100%;
+        }
+        .progress-indicator.stacked > li {
+            height: 80px;
+        }
+    }
+          .form-title {
+        margin-bottom: 20px;
+      }
+
+      .avatar {
+        display: inline-block;
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #d3d3d3;
+        margin-right: 20px;
+      }
+
+      .company {
+        color: #3367d6;
+        font-size: 20px;
+        font-weight: 200;
+      }
+
+      paper-button {
+        background-color: #4285f4;
+        color: #fff;
+        margin-top: 50px;
+        width: 50%;
+      }
+
+    paper-input {
+       margin-left: 10px;
+     }
+
+     vaadin-date-picker {
+       margin-left: 10px;
+     }
+
+     .leftMargin {
+       margin-left:10px;
+     }
+
+    paper-toast {
+      margin-left: calc(50vw - 150px);
+    }
+    
+    .firstCol {
+      width: 50%;
+    }
+    
+    .firstCol15 {
+      width: 25%;
+    }
+    
+    .secondCol {
+      width: 50%;
+    }
+    
+    .leftColumn {
+      float: left;
+      width: 50%;
+    }
+    
+    .citizenshipBox {
+      width: 40%;
+      float:right;
+      border: dashed 1px;
+      padding: 20px;
+    }
+    
+    .rightColumn {
+      width: 50%;
+      float: right;
+    }
+    
+    .clear {
+      clear:both;
+    }
+
+    
+    .card {
+      background: #FFFFFF;
+      max-width: 90%;
+      padding: 24px;
+      margin: 0 auto;
+    }
+    
+    paper-input-container {
+      padding-bottom: 0px !important;
+    }
+    </style>
+</head>
+<body>
+    <div class="horizontal layout center form-title">
+      <div class="avatar" item-icon><img style="padding-top:0px; padding-left: 0px" src="http://www.goblue20.com/wp-content/uploads/2015/06/Picture2-e1455129414278.png" alt="Logo"></img></div>
+      <div class="flex company">Blue 2.0 Insurance Co.</div>
+    </div>
+    <div id="timeline-speaker-example">
+        <h4 style="color: #3367d6">Application Timeline</h4>
+        <ul class="progress-indicator stacked dark">
+          <template is="dom-repeat" items="{{items}}">
+            <li class$="{{_getCompleted(item)}}">
+                  <span class="time">{{item.date}}</span>
+                  <span class="bubble"></span>
+                  <span class="stacked-text">
+                      {{item.status}}
+                      <span class="subdued">{{item.department}}</span>
+                      <!--<span class="sub-info">
+                          <ul>
+                              <li>Intro to stuff</li>
+                              <li>Stuff</li>
+                              <li>Advanced Stuff</li>
+                          </ul>
+                      </span>-->
+                  </span>
+              </li>
+          </template>
+        </ul>
+    </div>
+
+  </template>
+
+  <script>
+  Polymer({
+    is: 'wizard-chevron',
+    properties: {
+      'items': {
+        type: Array,
+        value: [{
+          date: "04-01-2016",
+          status: "Under Review",
+          department: "Underwriting",
+          completedClass: ""
+        },{
+          date: "01-01-2016",
+          status: "Submitted",
+          department: "Customer Experience",
+          completedClass: "completed"
+        },
+        ]
+      },
+    },
+    _getCompleted: function(i) {
+      return i.completedClass;
+    }
+  });
+  </script>
+
+</dom-module>
+
