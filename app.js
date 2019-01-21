@@ -11,7 +11,7 @@ function GetCode(instanceId, clientReq) {
 						hostname: "bpmpc.blue20.com",
 						port : 9443,
 						path: "/rest/bpm/wle/v1/process/" + instanceId + "?parts=header%7Cdata",
-						auth: "nate.straub@goblue20.com:u89Q9ztjElc5",
+						auth: "",
 						method: "GET",
             rejectUnauthorized: false
 						},
